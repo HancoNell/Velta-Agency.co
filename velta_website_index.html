@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Velta Agency — We Don't Post. We Perform.</title>
+<meta name="description" content="Velta Agency is a performance-driven social media management agency working with businesses across the US, UAE, Australia, UK and Canada."/>
+<meta property="og:title" content="Velta Agency — We Don't Post. We Perform."/>
+<meta property="og:description" content="Social media management for businesses that expect results. Global reach from Cape Town."/>
+<meta property="og:type" content="website"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --gold: #B4943C;
+  --gold-lt: #D4AF5A;
+  --gold-dim: #7A6228;
+  --black: #0A0A0A;
+  --off-black: #111111;
+  --grey1: #1C1C1C;
+  --grey2: #2A2A2A;
+  --grey3: #3A3A3A;
+  --lt-grey: #888888;
+  --vlt-grey: #CCCCCC;
+  --white: #FFFFFF;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Montserrat', sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--black);color:var(--white);font-family:var(--sans);font-size:16px;line-height:1.6;overflow-x:hidden;cursor:none;}
+
+/* CURSOR */
+.cursor{position:fixed;width:8px;height:8px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s,height .2s,background .2s;}
+.cursor-ring{position:fixed;width:32px;height:32px;border:1px solid rgba(180,148,60,0.4);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform .12s ease-out,width .2s,height .2s;}
+body:hover .cursor{opacity:1;}
+
+/* NOISE OVERLAY */
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");opacity:0.025;pointer-events:none;z-index:1;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 40px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(180,148,60,0.08);backdrop-filter:blur(12px);background:rgba(10,10,10,0.85);}
+.nav-logo{font-family:var(--serif);font-size:20px;font-weight:300;letter-spacing:.5em;color:var(--white);text-decoration:none;text-transform:uppercase;}
+.nav-logo span{color:var(--gold);}
+.nav-links{display:flex;gap:36px;list-style:none;}
+.nav-links a{font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,0.5);text-decoration:none;transition:color .3s;}
+.nav-links a:hover{color:var(--gold);}
+.nav-cta{font-size:10px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;padding:9px 22px;border:1px solid rgba(180,148,60,0.5);color:var(--gold);text-decoration:none;transition:all .3s;}
+.nav-cta:hover{background:var(--gold);color:var(--black);}
+
+/* HERO */
+#hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:120px 40px 80px;}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(180,148,60,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(180,148,60,0.03) 1px,transparent 1px);background-size:60px 60px;}
+.hero-glow{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(180,148,60,0.07) 0%,transparent 65%);top:50%;left:50%;transform:translate(-50%,-50%);}
+.hero-inner{position:relative;z-index:2;text-align:center;max-width:900px;}
+.hero-eyebrow{display:flex;align-items:center;justify-content:center;gap:12px;font-size:10px;font-weight:500;letter-spacing:.4em;text-transform:uppercase;color:rgba(180,148,60,0.7);margin-bottom:28px;opacity:0;animation:fadeUp .8s .2s forwards;}
+.hero-eyebrow::before,.hero-eyebrow::after{content:'';display:block;width:30px;height:1px;background:rgba(180,148,60,0.4);}
+.hero-h1{font-family:var(--serif);font-size:clamp(52px,9vw,110px);font-weight:300;line-height:.9;letter-spacing:-.01em;margin-bottom:8px;opacity:0;animation:fadeUp .9s .35s forwards;}
+.hero-h1 em{font-style:italic;color:var(--gold-lt);}
+.hero-sub-word{font-family:var(--serif);font-size:clamp(44px,7vw,86px);font-weight:300;color:rgba(255,255,255,0.1);letter-spacing:.14em;text-transform:uppercase;margin-bottom:32px;opacity:0;animation:fadeUp .9s .45s forwards;}
+.hero-desc{font-size:13px;font-weight:300;letter-spacing:.14em;color:rgba(255,255,255,0.4);text-transform:uppercase;margin-bottom:48px;opacity:0;animation:fadeUp .8s .6s forwards;}
+.hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;opacity:0;animation:fadeUp .8s .75s forwards;}
+.btn-primary{padding:14px 36px;background:var(--gold);color:var(--black);font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;transition:all .3s;}
+.btn-primary:hover{background:var(--gold-lt);}
+.btn-secondary{padding:14px 36px;border:1px solid rgba(180,148,60,0.4);color:var(--gold);font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;transition:all .3s;}
+.btn-secondary:hover{border-color:var(--gold);background:rgba(180,148,60,0.06);}
+.hero-markets{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);display:flex;gap:10px;flex-wrap:wrap;justify-content:center;opacity:0;animation:fadeUp .8s 1s forwards;}
+.market-pill{padding:5px 14px;border:1px solid rgba(180,148,60,0.18);font-size:9px;font-weight:500;letter-spacing:.22em;color:rgba(255,255,255,0.4);text-transform:uppercase;}
+.market-pill.lit{border-color:rgba(180,148,60,0.45);color:rgba(180,148,60,0.7);}
+
+/* SECTIONS */
+section{position:relative;z-index:2;}
+.section-inner{max-width:1100px;margin:0 auto;padding:100px 40px;}
+.section-label{font-size:9px;font-weight:600;letter-spacing:.4em;text-transform:uppercase;color:rgba(180,148,60,0.6);margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.section-label::after{content:'';flex:0 0 24px;height:1px;background:rgba(180,148,60,0.35);}
+.section-h2{font-family:var(--serif);font-size:clamp(34px,5vw,58px);font-weight:300;line-height:1.05;margin-bottom:16px;}
+.section-h2 em{font-style:italic;color:var(--gold-lt);}
+.gold-rule{width:60px;height:1px;background:var(--gold);margin:24px 0;opacity:.6;}
+
+/* SERVICES */
+#services{background:var(--off-black);}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1px;background:rgba(180,148,60,0.08);margin-top:60px;}
+.service-card{background:var(--off-black);padding:40px 36px;position:relative;overflow:hidden;transition:background .3s;}
+.service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);transform:scaleX(0);transition:transform .4s;}
+.service-card:hover{background:var(--grey1);}
+.service-card:hover::before{transform:scaleX(1);}
+.service-num{font-family:var(--serif);font-size:42px;font-weight:300;color:rgba(180,148,60,0.15);line-height:1;margin-bottom:16px;}
+.service-title{font-family:var(--serif);font-size:22px;font-weight:400;margin-bottom:12px;color:var(--white);}
+.service-desc{font-size:12px;line-height:1.8;color:var(--lt-grey);margin-bottom:20px;}
+.service-tags{display:flex;gap:6px;flex-wrap:wrap;}
+.stag{font-size:9px;font-weight:500;letter-spacing:.16em;padding:3px 10px;border:1px solid rgba(180,148,60,0.2);color:rgba(180,148,60,0.55);text-transform:uppercase;}
+
+/* CASE STUDY */
+#casestudy{background:var(--black);}
+.cs-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-top:60px;}
+.cs-left{}
+.cs-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border:1px solid rgba(180,148,60,0.3);font-size:9px;font-weight:600;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;margin-bottom:24px;}
+.cs-h3{font-family:var(--serif);font-size:38px;font-weight:300;line-height:1.1;margin-bottom:20px;}
+.cs-h3 em{font-style:italic;color:var(--gold-lt);}
+.cs-body{font-size:13px;line-height:1.9;color:var(--lt-grey);margin-bottom:32px;}
+.cs-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(180,148,60,0.12);}
+.cs-stat{background:var(--grey1);padding:20px 16px;text-align:center;}
+.cs-stat-num{font-family:var(--serif);font-size:32px;font-weight:300;color:var(--gold-lt);}
+.cs-stat-lbl{font-size:9px;letter-spacing:.18em;color:var(--lt-grey);text-transform:uppercase;margin-top:4px;}
+.cs-right{position:relative;}
+.cs-card{background:var(--grey1);border:1px solid rgba(180,148,60,0.15);padding:36px;position:relative;}
+.cs-card::after{content:'';position:absolute;top:12px;right:12px;width:40px;height:40px;border-top:1px solid rgba(180,148,60,0.4);border-right:1px solid rgba(180,148,60,0.4);}
+.cs-card-label{font-size:9px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:20px;}
+.cs-deliverable{display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.05);}
+.cs-deliverable:last-child{border-bottom:none;}
+.cs-check{width:18px;height:18px;border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+.cs-check::after{content:'✓';font-size:9px;color:var(--gold);}
+.cs-del-text{font-size:12px;color:var(--vlt-grey);line-height:1.5;}
+.cs-del-text strong{color:var(--white);display:block;font-size:12px;margin-bottom:2px;}
+
+/* PROCESS */
+#process{background:var(--off-black);}
+.process-steps{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:0;margin-top:60px;position:relative;}
+.process-steps::before{content:'';position:absolute;top:28px;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(180,148,60,0.25),transparent);}
+.process-step{padding:0 24px 40px;text-align:center;position:relative;}
+.process-step-num{width:56px;height:56px;border:1px solid rgba(180,148,60,0.3);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-family:var(--serif);font-size:22px;font-weight:300;color:var(--gold);background:var(--off-black);position:relative;z-index:1;transition:all .3s;}
+.process-step:hover .process-step-num{background:var(--gold);color:var(--black);}
+.process-step-title{font-family:var(--serif);font-size:18px;font-weight:400;margin-bottom:8px;}
+.process-step-desc{font-size:11px;line-height:1.8;color:var(--lt-grey);}
+
+/* MARKETS */
+#markets{background:var(--black);}
+.markets-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1px;background:rgba(180,148,60,0.08);margin-top:60px;}
+.market-card{background:var(--black);padding:32px 28px;transition:background .3s;cursor:default;}
+.market-card:hover{background:var(--grey1);}
+.market-flag{font-size:28px;margin-bottom:12px;}
+.market-name{font-family:var(--serif);font-size:20px;font-weight:400;margin-bottom:6px;}
+.market-detail{font-size:11px;color:var(--lt-grey);line-height:1.7;}
+.market-rate{font-size:11px;color:var(--gold);margin-top:8px;font-weight:500;}
+
+/* TESTIMONIAL */
+#testimonial{background:var(--grey1);overflow:hidden;position:relative;}
+#testimonial::before{content:'\201C';font-family:var(--serif);font-size:400px;font-weight:300;color:rgba(180,148,60,0.04);position:absolute;top:-60px;left:-20px;line-height:1;}
+.testi-inner{max-width:800px;margin:0 auto;padding:100px 40px;text-align:center;position:relative;z-index:2;}
+.testi-quote{font-family:var(--serif);font-size:clamp(20px,3vw,28px);font-weight:300;font-style:italic;line-height:1.6;color:var(--white);margin-bottom:32px;}
+.testi-quote em{color:var(--gold-lt);font-style:normal;}
+.testi-attr{font-size:10px;font-weight:500;letter-spacing:.25em;text-transform:uppercase;color:rgba(180,148,60,0.65);}
+
+/* PRICING */
+#pricing{background:var(--off-black);}
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1px;background:rgba(180,148,60,0.08);margin-top:60px;}
+.pricing-card{background:var(--off-black);padding:40px 32px;position:relative;transition:background .3s;}
+.pricing-card.featured{background:var(--grey1);}
+.pricing-card.featured::before{content:'Most Popular';position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--black);font-size:8px;font-weight:700;letter-spacing:.2em;padding:4px 16px;text-transform:uppercase;}
+.pricing-card:hover{background:var(--grey1);}
+.plan-name{font-size:10px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:12px;}
+.plan-price{font-family:var(--serif);font-size:48px;font-weight:300;color:var(--white);line-height:1;}
+.plan-price span{font-size:16px;color:var(--lt-grey);}
+.plan-period{font-size:10px;color:var(--lt-grey);letter-spacing:.1em;margin-bottom:24px;}
+.plan-divider{height:1px;background:rgba(180,148,60,0.15);margin-bottom:24px;}
+.plan-features{list-style:none;margin-bottom:28px;}
+.plan-features li{font-size:12px;color:var(--vlt-grey);padding:7px 0;border-bottom:1px solid rgba(255,255,255,0.04);display:flex;align-items:center;gap:10px;}
+.plan-features li::before{content:'—';color:var(--gold);flex-shrink:0;font-size:10px;}
+.plan-cta{display:block;text-align:center;padding:12px;border:1px solid rgba(180,148,60,0.4);color:var(--gold);font-size:10px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;transition:all .3s;}
+.plan-cta:hover,.pricing-card.featured .plan-cta{background:var(--gold);color:var(--black);}
+
+/* CONTACT */
+#contact{background:var(--black);}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;margin-top:60px;}
+.contact-info{}
+.contact-info p{font-size:13px;line-height:1.9;color:var(--lt-grey);margin-bottom:32px;}
+.contact-item{display:flex;align-items:flex-start;gap:16px;margin-bottom:20px;}
+.ci-label{font-size:9px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);min-width:70px;margin-top:2px;}
+.ci-value{font-size:13px;color:var(--vlt-grey);}
+.ci-value a{color:var(--vlt-grey);text-decoration:none;transition:color .3s;}
+.ci-value a:hover{color:var(--gold);}
+.contact-form{}
+.form-group{margin-bottom:20px;}
+.form-group label{display:block;font-size:9px;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:rgba(180,148,60,0.6);margin-bottom:8px;}
+.form-group input,.form-group textarea,.form-group select{width:100%;background:var(--grey1);border:1px solid rgba(180,148,60,0.15);padding:12px 16px;color:var(--white);font-family:var(--sans);font-size:13px;outline:none;transition:border-color .3s;-webkit-appearance:none;border-radius:0;}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:rgba(180,148,60,0.5);}
+.form-group select option{background:var(--grey1);}
+.form-group textarea{min-height:120px;resize:vertical;}
+.form-submit{width:100%;padding:14px;background:var(--gold);border:none;color:var(--black);font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;cursor:pointer;transition:background .3s;}
+.form-submit:hover{background:var(--gold-lt);}
+.form-success{display:none;padding:20px;background:rgba(180,148,60,0.1);border:1px solid rgba(180,148,60,0.3);text-align:center;color:var(--gold);font-size:13px;}
+.form-error{display:none;color:#ff6b6b;font-size:11px;margin-top:6px;}
+
+/* AI CHAT */
+#ai-section{background:var(--grey1);}
+.ai-box{background:var(--off-black);border:1px solid rgba(180,148,60,0.15);max-width:700px;margin:60px auto 0;}
+.ai-header{padding:20px 24px;border-bottom:1px solid rgba(180,148,60,0.1);display:flex;align-items:center;gap:12px;}
+.ai-dot{width:8px;height:8px;border-radius:50%;background:var(--gold);}
+.ai-title{font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--vlt-grey);}
+.ai-messages{padding:24px;min-height:280px;max-height:380px;overflow-y:auto;display:flex;flex-direction:column;gap:14px;}
+.ai-msg{max-width:85%;padding:12px 16px;font-size:13px;line-height:1.6;}
+.ai-msg.bot{background:var(--grey1);color:var(--vlt-grey);align-self:flex-start;border-left:2px solid var(--gold);}
+.ai-msg.user{background:rgba(180,148,60,0.12);color:var(--white);align-self:flex-end;border-right:2px solid rgba(180,148,60,0.4);}
+.ai-msg.bot.typing::after{content:'...';animation:dots 1.2s infinite;}
+.ai-input-row{padding:16px 24px;border-top:1px solid rgba(180,148,60,0.1);display:flex;gap:10px;}
+.ai-input{flex:1;background:var(--grey1);border:1px solid rgba(180,148,60,0.15);padding:10px 14px;color:var(--white);font-family:var(--sans);font-size:13px;outline:none;transition:border-color .3s;border-radius:0;}
+.ai-input:focus{border-color:rgba(180,148,60,0.4);}
+.ai-send{padding:10px 20px;background:var(--gold);border:none;color:var(--black);font-size:10px;font-weight:600;letter-spacing:.15em;cursor:pointer;font-family:var(--sans);transition:background .3s;}
+.ai-send:hover{background:var(--gold-lt);}
+.ai-send:disabled{opacity:.5;cursor:not-allowed;}
+
+/* FOOTER */
+footer{background:var(--off-black);border-top:1px solid rgba(180,148,60,0.08);}
+.footer-inner{max-width:1100px;margin:0 auto;padding:60px 40px 32px;}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr;gap:60px;margin-bottom:48px;}
+.footer-brand{}
+.footer-logo{font-family:var(--serif);font-size:22px;font-weight:300;letter-spacing:.45em;color:var(--white);text-transform:uppercase;margin-bottom:12px;}
+.footer-logo span{color:var(--gold);}
+.footer-tagline{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--lt-grey);}
+.footer-col h4{font-size:9px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:16px;}
+.footer-col ul{list-style:none;}
+.footer-col li{margin-bottom:8px;}
+.footer-col a{font-size:12px;color:var(--lt-grey);text-decoration:none;transition:color .3s;}
+.footer-col a:hover{color:var(--gold);}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.05);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+.footer-copy{font-size:10px;color:rgba(255,255,255,0.25);}
+.footer-tagline-b{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(180,148,60,0.4);}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+@keyframes dots{0%,20%{content:'.';}40%{content:'..';}60%,100%{content:'...';}}
+
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+/* SCROLL BAR */
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:var(--black);}
+::-webkit-scrollbar-thumb{background:var(--gold-dim);}
+
+/* MOBILE */
+@media(max-width:768px){
+  nav{padding:16px 20px;}
+  .nav-links{display:none;}
+  .section-inner{padding:70px 20px;}
+  .cs-grid,.contact-grid,.footer-top{grid-template-columns:1fr;}
+  .hero-h1{font-size:52px;}
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">VELT<span>A</span></a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#casestudy">Results</a></li>
+    <li><a href="#markets">Markets</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#ai-section">Ask Velta</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Get Started</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Social Media Management · Global Reach</div>
+    <h1 class="hero-h1">We don't post.<br><em>We perform.</em></h1>
+    <div class="hero-sub-word">Worldwide</div>
+    <p class="hero-desc">Performance-driven social media for businesses that demand results</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-primary">Start Your Growth</a>
+      <a href="#casestudy" class="btn-secondary">See Our Work</a>
+    </div>
+  </div>
+  <div class="hero-markets">
+    <div class="market-pill lit">🇺🇸 United States</div>
+    <div class="market-pill lit">🇦🇪 Dubai</div>
+    <div class="market-pill lit">🇦🇺 Australia</div>
+    <div class="market-pill">🇬🇧 United Kingdom</div>
+    <div class="market-pill">🇨🇦 Canada</div>
+    <div class="market-pill">🌍 And beyond</div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-inner">
+    <div class="section-label reveal">What We Do</div>
+    <h2 class="section-h2 reveal">Every service built<br>around <em>performance.</em></h2>
+    <div class="gold-rule reveal"></div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-num">01</div>
+        <h3 class="service-title">Social Media Management</h3>
+        <p class="service-desc">Full-service content creation, scheduling, community management, and analytics reporting across Instagram, Facebook, LinkedIn, and TikTok. We handle everything.</p>
+        <div class="service-tags"><span class="stag">Instagram</span><span class="stag">Facebook</span><span class="stag">LinkedIn</span></div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-num">02</div>
+        <h3 class="service-title">Content Strategy</h3>
+        <p class="service-desc">Brand voice development, content pillar architecture, 30-day content calendars, and competitor analysis. Strategy first — every post has a purpose.</p>
+        <div class="service-tags"><span class="stag">Strategy</span><span class="stag">Calendars</span><span class="stag">Brand Voice</span></div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-num">03</div>
+        <h3 class="service-title">Visual Content Creation</h3>
+        <p class="service-desc">Premium graphic design, Reel cover frames, carousel posts, and Story templates — all aligned to your brand identity. Editorial-grade aesthetics, every time.</p>
+        <div class="service-tags"><span class="stag">Design</span><span class="stag">Reels</span><span class="stag">Carousels</span></div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-num">04</div>
+        <h3 class="service-title">Real Estate Social Media</h3>
+        <p class="service-desc">Specialised content for real estate agents and agencies — listing showcases, neighbourhood spotlights, market updates, and client win posts that generate enquiries.</p>
+        <div class="service-tags"><span class="stag">Real Estate</span><span class="stag">Listings</span><span class="stag">Leads</span></div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-num">05</div>
+        <h3 class="service-title">Brand Launch Packages</h3>
+        <p class="service-desc">New business? We build your entire social presence from scratch — profile setup, visual identity, first 30 days of content, and growth strategy included.</p>
+        <div class="service-tags"><span class="stag">New Brands</span><span class="stag">Setup</span><span class="stag">Launch</span></div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-num">06</div>
+        <h3 class="service-title">Monthly Performance Reports</h3>
+        <p class="service-desc">Clear, branded reports every month showing follower growth, reach, engagement, and top-performing content. You always know exactly what your investment is doing.</p>
+        <div class="service-tags"><span class="stag">Analytics</span><span class="stag">Reporting</span><span class="stag">ROI</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDY -->
+<section id="casestudy">
+  <div class="section-inner">
+    <div class="section-label reveal">Proof of Work</div>
+    <h2 class="section-h2 reveal">Results from day <em>one.</em></h2>
+    <div class="gold-rule reveal"></div>
+    <div class="cs-grid">
+      <div class="cs-left reveal">
+        <div class="cs-badge">Case Study — Solar Pure Solutions</div>
+        <h3 class="cs-h3">From zero presence<br>to first <em>paying client</em><br>in 3 weeks.</h3>
+        <p class="cs-body">Solar Pure Solutions is a residential and commercial solar panel cleaning company in the Western Cape. When they came to Velta, they had no social media, no brand identity, and no digital presence whatsoever. We built everything from the ground up — and had them generating real enquiries within weeks.</p>
+        <div class="cs-stats">
+          <div class="cs-stat"><div class="cs-stat-num">0→1</div><div class="cs-stat-lbl">Client Acquired</div></div>
+          <div class="cs-stat"><div class="cs-stat-num">3wk</div><div class="cs-stat-lbl">Time to Client</div></div>
+          <div class="cs-stat"><div class="cs-stat-num">100%</div><div class="cs-stat-lbl">Organic Growth</div></div>
+        </div>
+      </div>
+      <div class="cs-right reveal">
+        <div class="cs-card">
+          <div class="cs-card-label">Deliverables</div>
+          <div class="cs-deliverable"><div class="cs-check"></div><div class="cs-del-text"><strong>Brand Identity Package</strong>Visual guidelines, colour palette, tone of voice — built before a single post went live.</div></div>
+          <div class="cs-deliverable"><div class="cs-check"></div><div class="cs-del-text"><strong>Instagram + Facebook Setup</strong>Fully optimised profiles, highlight covers, bio, and CTA configuration.</div></div>
+          <div class="cs-deliverable"><div class="cs-check"></div><div class="cs-del-text"><strong>30-Day Content Calendar</strong>Full month mapped in advance — post types, captions, hashtags, schedule.</div></div>
+          <div class="cs-deliverable"><div class="cs-check"></div><div class="cs-del-text"><strong>12 Branded Posts Published</strong>Educational, trust-building, and CTA content published across both platforms.</div></div>
+          <div class="cs-deliverable"><div class="cs-check"></div><div class="cs-del-text"><strong>First Client Acquired</strong>Direct enquiry via Instagram leading to a signed residential cleaning contract.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="section-inner">
+    <div class="section-label reveal">How It Works</div>
+    <h2 class="section-h2 reveal">Simple process.<br><em>Real results.</em></h2>
+    <div class="gold-rule reveal"></div>
+    <div class="process-steps">
+      <div class="process-step reveal">
+        <div class="process-step-num">1</div>
+        <h4 class="process-step-title">Discovery Call</h4>
+        <p class="process-step-desc">We learn your business, goals, target audience, and competitors. Free, no obligation.</p>
+      </div>
+      <div class="process-step reveal">
+        <div class="process-step-num">2</div>
+        <h4 class="process-step-title">Strategy Build</h4>
+        <p class="process-step-desc">We build your content pillars, brand voice, platform selection, and 30-day calendar.</p>
+      </div>
+      <div class="process-step reveal">
+        <div class="process-step-num">3</div>
+        <h4 class="process-step-title">Content Creation</h4>
+        <p class="process-step-desc">Premium graphics, captions, Reels, carousels — all created and approved before posting.</p>
+      </div>
+      <div class="process-step reveal">
+        <div class="process-step-num">4</div>
+        <h4 class="process-step-title">Publish & Engage</h4>
+        <p class="process-step-desc">Content goes live on schedule. We manage comments, DMs, and community interactions.</p>
+      </div>
+      <div class="process-step reveal">
+        <div class="process-step-num">5</div>
+        <h4 class="process-step-title">Report & Optimise</h4>
+        <p class="process-step-desc">Monthly performance report delivered. We refine strategy based on what the data shows.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARKETS -->
+<section id="markets">
+  <div class="section-inner">
+    <div class="section-label reveal">Where We Work</div>
+    <h2 class="section-h2 reveal">Global reach.<br><em>Local precision.</em></h2>
+    <div class="gold-rule reveal"></div>
+    <div class="markets-grid">
+      <div class="market-card reveal"><div class="market-flag">🇺🇸</div><div class="market-name">United States</div><div class="market-detail">Real estate, e-commerce, fitness, med spas, legal services.</div><div class="market-rate">From $750/month</div></div>
+      <div class="market-card reveal"><div class="market-flag">🇦🇪</div><div class="market-name">UAE / Dubai</div><div class="market-detail">Luxury real estate, hospitality, lifestyle brands, property investment.</div><div class="market-rate">From $1,500/month</div></div>
+      <div class="market-card reveal"><div class="market-flag">🇦🇺</div><div class="market-name">Australia</div><div class="market-detail">Real estate agencies, retail, health and wellness, local services.</div><div class="market-rate">From A$1,200/month</div></div>
+      <div class="market-card reveal"><div class="market-flag">🇬🇧</div><div class="market-name">United Kingdom</div><div class="market-detail">Estate agents, hospitality, professional services, e-commerce.</div><div class="market-rate">From £600/month</div></div>
+      <div class="market-card reveal"><div class="market-flag">🇨🇦</div><div class="market-name">Canada</div><div class="market-detail">Real estate teams, professional services, lifestyle brands.</div><div class="market-rate">From CAD $800/month</div></div>
+      <div class="market-card reveal"><div class="market-flag">🌍</div><div class="market-name">South Africa</div><div class="market-detail">Our home market — solar, home services, professional firms.</div><div class="market-rate">From R2,800/month</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section id="testimonial">
+  <div class="testi-inner">
+    <p class="testi-quote reveal">"Velta came in when we had <em>nothing online</em>. Within weeks we had a professional Instagram, consistent content, and our first paying client reaching out through social media. The quality of the work is exceptional — it looks and feels like a premium brand."</p>
+    <div class="testi-attr reveal">— Solar Pure Solutions · Western Cape, South Africa</div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="section-inner">
+    <div class="section-label reveal">Investment</div>
+    <h2 class="section-h2 reveal">Transparent pricing.<br><em>Measurable returns.</em></h2>
+    <div class="gold-rule reveal"></div>
+    <div class="pricing-grid">
+      <div class="pricing-card reveal">
+        <div class="plan-name">Starter</div>
+        <div class="plan-price">$750<span> USD</span></div>
+        <div class="plan-period">per month</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li>12 posts per month</li>
+          <li>1 platform (Instagram or Facebook)</li>
+          <li>Caption copywriting</li>
+          <li>Basic community management</li>
+          <li>Monthly performance report</li>
+        </ul>
+        <a href="#contact" class="plan-cta">Get Started</a>
+      </div>
+      <div class="pricing-card featured reveal">
+        <div class="plan-name">Growth</div>
+        <div class="plan-price">$1,200<span> USD</span></div>
+        <div class="plan-period">per month</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li>20 posts per month</li>
+          <li>2 platforms</li>
+          <li>Reels + Stories included</li>
+          <li>Full community management</li>
+          <li>Hashtag strategy</li>
+          <li>Detailed monthly report</li>
+        </ul>
+        <a href="#contact" class="plan-cta">Get Started</a>
+      </div>
+      <div class="pricing-card reveal">
+        <div class="plan-name">Performance</div>
+        <div class="plan-price">$2,000<span> USD</span></div>
+        <div class="plan-period">per month</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li>30+ posts per month</li>
+          <li>3 platforms</li>
+          <li>Paid ads strategy</li>
+          <li>Weekly check-in calls</li>
+          <li>Content calendar approval</li>
+          <li>Priority response time</li>
+          <li>Competitor analysis</li>
+        </ul>
+        <a href="#contact" class="plan-cta">Get Started</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AI CHAT -->
+<section id="ai-section">
+  <div class="section-inner">
+    <div class="section-label reveal">AI-Powered</div>
+    <h2 class="section-h2 reveal">Ask Velta anything<br>about your <em>social media.</em></h2>
+    <div class="gold-rule reveal"></div>
+    <p class="reveal" style="font-size:13px;color:var(--lt-grey);margin-bottom:0;max-width:560px;">Ask our AI assistant about social media strategy, content ideas, platform advice, or what Velta Agency can do for your business.</p>
+    <div class="ai-box reveal">
+      <div class="ai-header">
+        <div class="ai-dot"></div>
+        <div class="ai-title">Velta AI — Social Media Advisor</div>
+      </div>
+      <div class="ai-messages" id="aiMessages">
+        <div class="ai-msg bot">Welcome to Velta Agency. I'm your social media advisor. Ask me anything — content strategy, platform tips, what services suit your business, or how we can help you grow globally. What's on your mind?</div>
+      </div>
+      <div class="ai-input-row">
+        <input class="ai-input" id="aiInput" type="text" placeholder="Ask about your social media strategy..." />
+        <button class="ai-send" id="aiSend" onclick="sendAiMessage()">Send</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="section-label reveal">Get In Touch</div>
+    <h2 class="section-h2 reveal">Ready to <em>perform?</em></h2>
+    <div class="gold-rule reveal"></div>
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <p>We work with businesses across the US, UAE, Australia, UK, and Canada. If your social media isn't generating real results, let's talk. We offer a free content audit and 3 sample posts before you commit to anything.</p>
+        <div class="contact-item"><div class="ci-label">Email</div><div class="ci-value"><a href="mailto:hello@veltaagency.com">hello@veltaagency.com</a></div></div>
+        <div class="contact-item"><div class="ci-label">WhatsApp</div><div class="ci-value"><a href="https://wa.me/27719199620">+27 71 919 9620</a></div></div>
+        <div class="contact-item"><div class="ci-label">Website</div><div class="ci-value"><a href="#">veltaagency.co</a></div></div>
+        <div class="contact-item"><div class="ci-label">Based in</div><div class="ci-value">Cape Town, South Africa</div></div>
+        <div class="contact-item"><div class="ci-label">Serving</div><div class="ci-value">US · UAE · Australia · UK · Canada · SA</div></div>
+      </div>
+      <div class="contact-form reveal">
+        <div id="formSuccess" class="form-success">Message received. We'll be in touch within 24 hours.</div>
+        <form id="contactForm" onsubmit="submitForm(event)">
+          <div class="form-group">
+            <label>Your Name</label>
+            <input type="text" id="fname" placeholder="John Smith" required/>
+          </div>
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" id="femail" placeholder="john@company.com" required/>
+          </div>
+          <div class="form-group">
+            <label>Business Type</label>
+            <select id="fbiz">
+              <option value="">Select your industry</option>
+              <option>Real Estate Agency</option>
+              <option>E-commerce Brand</option>
+              <option>Restaurant / Hospitality</option>
+              <option>Fitness / Wellness</option>
+              <option>Legal / Professional Services</option>
+              <option>Home Services / Trades</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Country</label>
+            <select id="fcountry">
+              <option value="">Select your country</option>
+              <option>United States</option>
+              <option>United Arab Emirates</option>
+              <option>Australia</option>
+              <option>United Kingdom</option>
+              <option>Canada</option>
+              <option>South Africa</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Message</label>
+            <textarea id="fmsg" placeholder="Tell us about your business and what you're looking to achieve on social media..."></textarea>
+          </div>
+          <button type="submit" class="form-submit">Send Message →</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">VELT<span>A</span></div>
+        <div class="footer-tagline">We don't post. We perform.</div>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#services">Social Media Management</a></li>
+          <li><a href="#services">Content Strategy</a></li>
+          <li><a href="#services">Visual Content</a></li>
+          <li><a href="#services">Real Estate Social</a></li>
+          <li><a href="#services">Brand Launches</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Markets</h4>
+        <ul>
+          <li><a href="#markets">United States</a></li>
+          <li><a href="#markets">Dubai / UAE</a></li>
+          <li><a href="#markets">Australia</a></li>
+          <li><a href="#markets">United Kingdom</a></li>
+          <li><a href="#markets">Canada</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 Velta Agency. All rights reserved.</div>
+      <div class="footer-tagline-b">hello@veltaagency.com · veltaagency.co</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// CURSOR
+const cur = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+(function animRing(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing);})();
+document.querySelectorAll('a,button,.service-card,.market-card,.pricing-card').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cur.style.width='14px';cur.style.height='14px';ring.style.width='48px';ring.style.height='48px';});
+  el.addEventListener('mouseleave',()=>{cur.style.width='8px';cur.style.height='8px';ring.style.width='32px';ring.style.height='32px';});
+});
+
+// SCROLL REVEAL
+const obs = new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');}});},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// CONTACT FORM
+function submitForm(e){
+  e.preventDefault();
+  const btn = document.querySelector('.form-submit');
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+  setTimeout(()=>{
+    document.getElementById('contactForm').style.display='none';
+    document.getElementById('formSuccess').style.display='block';
+  },1200);
+}
+
+// AI CHAT
+const SYSTEM_PROMPT = `You are the Velta Agency AI assistant embedded on the Velta Agency website. Velta Agency is a performance-driven social media management agency founded by Hanco, a 16-year-old entrepreneur based in Cape Town, South Africa. Velta works with businesses across the US, UAE, Australia, UK, Canada, and South Africa.
+
+Velta's tagline is "We don't post. We perform." Brand colours are black, white, and gold. The agency specialises in real estate social media, e-commerce brands, restaurants, fitness studios, and home services.
+
+Pricing: Starter $750/mo, Growth $1,200/mo, Performance $2,000/mo (USD). South Africa pricing from R2,800/mo.
+
+Contact: hello@veltaagency.com, WhatsApp +27 71 919 9620, website veltaagency.co
+
+Case study: Solar Pure Solutions — solar panel cleaning company launched from zero to first paying client in 3 weeks using 100% organic social media.
+
+Be helpful, warm, professional, and concise. Answer questions about social media strategy, content, platforms, and what Velta can do for the visitor's business. When relevant, gently guide them toward booking a discovery call or getting in touch. Keep responses under 120 words unless a detailed explanation is truly needed.`;
+
+async function sendAiMessage(){
+  const input = document.getElementById('aiInput');
+  const msgs = document.getElementById('aiMessages');
+  const btn = document.getElementById('aiSend');
+  const text = input.value.trim();
+  if(!text) return;
+
+  // user bubble
+  const uMsg = document.createElement('div');
+  uMsg.className = 'ai-msg user';
+  uMsg.textContent = text;
+  msgs.appendChild(uMsg);
+  input.value = '';
+  btn.disabled = true;
+
+  // typing
+  const typing = document.createElement('div');
+  typing.className = 'ai-msg bot typing';
+  typing.textContent = 'Thinking';
+  msgs.appendChild(typing);
+  msgs.scrollTop = msgs.scrollHeight;
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:300,
+        system: SYSTEM_PROMPT,
+        messages:[{role:'user',content:text}]
+      })
+    });
+    const data = await res.json();
+    typing.remove();
+    const botMsg = document.createElement('div');
+    botMsg.className = 'ai-msg bot';
+    botMsg.textContent = data.content?.[0]?.text || "I'm having trouble connecting right now. Email us at hello@veltaagency.com and we'll get back to you within 24 hours.";
+    msgs.appendChild(botMsg);
+  } catch(err){
+    typing.remove();
+    const errMsg = document.createElement('div');
+    errMsg.className = 'ai-msg bot';
+    errMsg.textContent = "Connection issue. Reach us directly at hello@veltaagency.com or WhatsApp +27 71 919 9620.";
+    msgs.appendChild(errMsg);
+  }
+  btn.disabled = false;
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+document.getElementById('aiInput').addEventListener('keydown',e=>{if(e.key==='Enter') sendAiMessage();});
+
+// SMOOTH NAV
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    e.preventDefault();
+    const t = document.querySelector(a.getAttribute('href'));
+    if(t) t.scrollIntoView({behavior:'smooth'});
+  });
+});
+</script>
+</body>
+</html>
